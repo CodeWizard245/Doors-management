@@ -1,4 +1,4 @@
-local showDoorMessages = true 
+local showDoorMessages = true
 
 function SetShowDoorMessages(state)
     showDoorMessages = state
@@ -10,8 +10,7 @@ RegisterCommand('doors', function(source, args, rawCommand)
     local vehicle = GetVehiclePedIsIn(playerPed, false)
 
     if not vehicle or vehicle == 0 then
-        local closestVehicle = GetClosestVehicle(GetEntityCoords(playerPed), 10.0)
-        vehicle = closestVehicle
+        vehicle = GetClosestVehicle(GetEntityCoords(playerPed), 10.0)
     end
 
     if vehicle and vehicle ~= 0 then
@@ -84,6 +83,7 @@ function IsVehicleDoorFullyOpen(vehicle, doorIndex)
     return GetVehicleDoorAngleRatio(vehicle, doorIndex) >= 0.50
 end
 
+-- Добавляем подсказку для команды /doors
 TriggerEvent('chat:addSuggestion', '/doors', 'Doors management.', {
     { name = 'door', help = 'Type of door (Trunk, Hood, LeftFront, RightFront, LeftRear, RightRear)' }
 })
